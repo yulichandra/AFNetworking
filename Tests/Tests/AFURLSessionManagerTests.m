@@ -47,9 +47,10 @@
     //Unfortunately, iOS 7 throws an exception when trying to create a background URL Session inside this test target, which means our tests here can only run on iOS 8+
     //Travis actually needs the try catch here. Just doing if ([NSURLSessionConfiguration respondsToSelector:@selector(backgroundSessionWithIdentifier)]) wasn't good enough.
     @try {
-        NSString *identifier = [NSString stringWithFormat:@"com.afnetworking.tests.urlsession.%@", [[NSUUID UUID] UUIDString]];
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:identifier];
-        self.backgroundManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+//        NSString *identifier = [NSString stringWithFormat:@"com.afnetworking.tests.urlsession.%@", [[NSUUID UUID] UUIDString]];
+//        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:identifier];
+//        self.backgroundManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+        self.backgroundManager = nil;
     }
     @catch (NSException *exception) {
 
@@ -422,10 +423,9 @@
     [self expectationForNotification:AFNetworkingTaskDidResumeNotification
                               object:nil
                              handler:nil];
-    [task resume];
     [task suspend];
     [task resume];
-    [self waitForExpectationsWithTimeout:2.0 handler:nil];
+    [self waitForExpectationsWithTimeout:5.0 handler:nil];
     [task cancel];
 }
 
@@ -435,8 +435,7 @@
                              handler:nil];
     [task resume];
     [task suspend];
-    [task resume];
-    [self waitForExpectationsWithTimeout:2.0 handler:nil];
+    [self waitForExpectationsWithTimeout:5.0 handler:nil];
     [task cancel];
 }
 
