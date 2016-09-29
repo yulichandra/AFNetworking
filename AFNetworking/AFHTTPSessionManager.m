@@ -124,8 +124,6 @@
                                                           success:success
                                                           failure:failure];
 
-    [dataTask resume];
-
     return dataTask;
 }
 
@@ -139,8 +137,6 @@
             success(task);
         }
     } failure:failure];
-
-    [dataTask resume];
 
     return dataTask;
 }
@@ -160,8 +156,6 @@
                        failure:(void (^)(NSURLSessionDataTask * _Nullable, NSError * _Nonnull))failure
 {
     NSURLSessionDataTask *dataTask = [self dataTaskWithHTTPMethod:@"POST" URLString:URLString parameters:parameters uploadProgress:uploadProgress downloadProgress:nil success:success failure:failure];
-
-    [dataTask resume];
 
     return dataTask;
 }
@@ -218,8 +212,6 @@
 {
     NSURLSessionDataTask *dataTask = [self dataTaskWithHTTPMethod:@"PUT" URLString:URLString parameters:parameters uploadProgress:nil downloadProgress:nil success:success failure:failure];
 
-    [dataTask resume];
-
     return dataTask;
 }
 
@@ -230,8 +222,6 @@
 {
     NSURLSessionDataTask *dataTask = [self dataTaskWithHTTPMethod:@"PATCH" URLString:URLString parameters:parameters uploadProgress:nil downloadProgress:nil success:success failure:failure];
 
-    [dataTask resume];
-
     return dataTask;
 }
 
@@ -241,8 +231,6 @@
                          failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
     NSURLSessionDataTask *dataTask = [self dataTaskWithHTTPMethod:@"DELETE" URLString:URLString parameters:parameters uploadProgress:nil downloadProgress:nil success:success failure:failure];
-
-    [dataTask resume];
 
     return dataTask;
 }
